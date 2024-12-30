@@ -30,3 +30,35 @@ public class Sample {
     }
 
 }
+
+
+
+
+/* another approach */
+
+class Main {
+    public static void main(String[] args) {
+        int n = 12345;
+        System.out.println(countDigitsUsingMethod1(n));
+        System.out.println(countDigitsUsingMethod2(n));
+        System.out.println(countDigitsUsingMethod3(n));
+    }
+    
+    public static int countDigitsUsingMethod1(int n) {
+        int temp = n;
+        int count = 0;
+        while(temp != 0) {
+            count++;
+            temp/=10;
+        }
+        return count;
+    }
+    
+    public static int countDigitsUsingMethod2(int n) {
+        return Integer.toString(n).length();
+    }
+    
+    public static int countDigitsUsingMethod3(int n) {
+        return (int)Math.log10(n) + 1;
+    }
+}
