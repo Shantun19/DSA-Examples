@@ -1,21 +1,21 @@
 import java.util.*;
 
-public class Sample {
+public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        System.out.println("the Number of digits in using optimal way " + n + " is " + count_dig(n));
-        System.out.println("the Number of digits in using brute force way " + n + " is " + count_dig_2(n));
-        System.out.println("the Number of digits in using recursion " + n + " is " + count_digit_using_recursion(n));
+        int num = sc.nextInt();
+        int getDigitCount_bruteForce = returnDigitCount_bruteForce(num);
+        System.out.println("the count of digits is using brute force approach " + getDigitCount_bruteForce);
+        int getDigitCount_optimal = returnDigitCount_optimal(num);
+        System.out.println("the count of digits is using optimal approach " + getDigitCount_optimal);
+        int getDigitCount_optimalApproach = returnDigitCount_optimalApproach(num);
+        System.out.println("the count of digits is using 2nd optimal approach " + getDigitCount_optimalApproach);
+        int getDigitCount_recursion = returnDigitCount_recursion(num);
+        System.out.println("the count of digits is using Recursion " + getDigitCount_recursion);
     }
 
-    // optimal approach.
-    public static int count_dig(int n) {
-        return (int) (Math.log10(n) + 1);
-    }
-
-    // brute force approach.
-    public static int count_dig_2(int n) {
+    // brute force approach
+    public static int returnDigitCount_bruteForce(int n) {
         int count = 0;
         while(n != 0) {
             count++;
@@ -24,12 +24,20 @@ public class Sample {
         return count;
     }
 
-    // using recursive approach
-    public static int count_digit_using_recursion(int n) {
-        if(n == 0) return 0;
-        return 1 + count_digit_using_recursion(n/=10);
+    // using optimal approach
+    public static int returnDigitCount_optimal(int n) {
+        return String.valueOf(n).length();
     }
+
+    // using math logic
+    public static int returnDigitCount_optimalApproach(int n) {
+        return (int)(Math.log10(n) + 1); // log10 of an integer will be the one less digits of a number;
+    }
+
+    // using recursion
+    public static int returnDigitCount_recursion(int n) {
+        if(n == 0) return 0;
+        return 1 + returnDigitCount_recursion(n/10);
+    }
+
 }
-
-
-
